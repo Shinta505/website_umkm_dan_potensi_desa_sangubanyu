@@ -1,0 +1,30 @@
+/* Custom Styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.page-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('asset/pemandangan desa sangubanyu.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('asset/pemandangan\ desa\ sangubanyu.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.modal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mission-card {
+    border-left: 4px solid #3B82F6;
+    /* blue-500 */
+}
