@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Desa - Website Desa Sangubanyu</title>
+    <title>Struktur Organisasi - Website Desa Sangubanyu</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,6 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -36,9 +37,9 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="../index.html" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
-                    <a href="profil.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Profil
-                        Desa</a>
-                    <a href="struktur-organisasi.html" class="text-gray-600 hover:text-blue-600 font-medium">Struktur Organisasi</a>
+                    <a href="profil-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Profil Desa</a>
+                    <a href="struktur-organisasi.html"
+                        class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Struktur Organisasi</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">GOR & KWT</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">UMKM</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Peta Desa</a>
@@ -55,9 +56,10 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden py-2">
                 <a href="../index.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Home</a>
-                <a href="profil.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">Profil
+                <a href="profil-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Profil
                     Desa</a>
-                <a href="struktur-organisasi.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Struktur Organisasi</a>
+                <a href="struktur-organisasi.html"
+                    class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">Struktur Organisasi</a>
                 <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">GOR & KWT</a>
                 <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">UMKM</a>
                 <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Peta Desa</a>
@@ -70,130 +72,32 @@
         <!-- Page Header -->
         <section class="page-header text-white py-20">
             <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold">Profil Desa Sangubanyu</h1>
+                <h1 class="text-4xl md:text-5xl font-bold">Struktur Organisasi Desa</h1>
+                <p class="mt-2 text-lg text-gray-200">Pemerintahan Desa Sangubanyu</p>
             </div>
         </section>
 
-        <!-- Visi & Misi Section -->
+        <!-- Bagan Struktur Organisasi Section -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4">
-                <!-- Visi -->
-                <div class="mb-16">
-                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Visi Desa</h2>
-                    <div
-                        class="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-6 rounded-r-lg shadow-md max-w-4xl mx-auto">
-                        <p class="text-xl italic text-center">“Terwujudnya kehidupan masyarakat Desa Sangubanyu yang
-                            religius, adil, maju, harmonis, dan sejahtera.”</p>
-                    </div>
-                </div>
-
-                <!-- Misi -->
-                <div>
-                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Misi Desa</h2>
-                    <div class="space-y-8 max-w-4xl mx-auto">
-                        <!-- Misi 1 -->
-                        <div class="mission-card bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">1. Meningkatkan Kualitas Kehidupan Beragama
-                            </h3>
-                            <p class="text-gray-700 mb-3">Meningkatkan kualitas kehidupan beragama dalam mewujudkan
-                                masyarakat Desa Sangubanyu yang beriman, bertakwa, dan berakhlakul karimah.</p>
-                            <p class="text-sm text-gray-600"><strong class="font-semibold">Arah Kebijakan:</strong>
-                                Meningkatkan kesadaran masyarakat untuk memiliki jiwa sosial, meningkatkan kehidupan
-                                keluarga yang sakinah, dan meningkatkan partisipasi dalam kegiatan keagamaan.</p>
-                        </div>
-                        <!-- Misi 2 -->
-                        <div class="mission-card bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">2. Meningkatkan Pelayanan Umum</h3>
-                            <p class="text-gray-700 mb-3">Meningkatkan pelayanan umum yang adil bagi seluruh masyarakat
-                                Desa Sangubanyu.</p>
-                            <p class="text-sm text-gray-600"><strong class="font-semibold">Arah Kebijakan:</strong>
-                                Meningkatkan kualitas pelayanan publik, mempermudah akses informasi desa, dan
-                                meningkatkan pelayanan administrasi umum.</p>
-                        </div>
-                        <!-- Misi 3 -->
-                        <div class="mission-card bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">3. Meningkatkan Pemberdayaan Masyarakat
-                            </h3>
-                            <p class="text-gray-700 mb-3">Meningkatkan pemberdayaan dan partisipasi aktif masyarakat
-                                dalam seluruh aspek pembangunan untuk kemajuan Desa Sangubanyu.</p>
-                            <p class="text-sm text-gray-600"><strong class="font-semibold">Arah Kebijakan:</strong>
-                                Mengikutsertakan dan mengajak masyarakat berperan aktif dalam mengawal pembangunan serta
-                                mengutamakan kualitas.</p>
-                        </div>
-                        <!-- Misi 4 -->
-                        <div class="mission-card bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">4. Mewujudkan Harmonisasi Kelembagaan</h3>
-                            <p class="text-gray-700 mb-3">Mewujudkan harmonisasi antar kelembagaan yang ada di Desa
-                                Sangubanyu, mulai tingkat RT/RW, sehingga terjalin sinergitas kinerja yang optimal.</p>
-                            <p class="text-sm text-gray-600"><strong class="font-semibold">Arah Kebijakan:</strong>
-                                Menjaga kerukunan dan melakukan silaturahmi rutin antar kelembagaan.</p>
-                        </div>
-                        <!-- Misi 5 -->
-                        <div class="mission-card bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">5. Mengembangkan Kapasitas Masyarakat</h3>
-                            <p class="text-gray-700 mb-3">Mengembangkan kapasitas, kecakapan, dan keterampilan
-                                masyarakat Desa Sangubanyu menuju peningkatan kesejahteraan.</p>
-                            <p class="text-sm text-gray-600"><strong class="font-semibold">Arah Kebijakan:</strong>
-                                Meningkatkan daya juang masyarakat, mendukung bakat khusus, membimbing potensi, dan
-                                melaksanakan reformasi birokrasi.</p>
-                        </div>
-                    </div>
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Bagan Struktur Organisasi Pemerintahan
+                    Desa Sangubanyu</h2>
+                <div class="bg-white p-4 rounded-lg shadow-lg max-w-5xl mx-auto">
+                    <img src="https://placehold.co/1200x800/E2E8F0/4A5568?text=Bagan+Struktur+Organisasi+Desa"
+                        alt="Bagan Struktur Organisasi Pemerintahan Desa Sangubanyu" class="w-full h-auto rounded">
                 </div>
             </div>
         </section>
 
-        <!-- Bagan Desa Section -->
+        <!-- Aparat Pemerintah Desa Section -->
         <section class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Bagan Desa</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="text-center">
-                        <h3 class="text-2xl font-semibold mb-4">Struktur Organisasi Pemerintahan Desa</h3>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
-                            <img src="https://placehold.co/800x600/E2E8F0/4A5568?text=Bagan+Struktur+Pemerintahan+Desa"
-                                alt="Bagan Struktur Pemerintahan Desa" class="w-full h-auto rounded">
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-2xl font-semibold mb-4">Struktur Organisasi Kelompok Wanita Tani</h3>
-                        <div class="bg-white p-4 rounded-lg shadow-lg">
-                            <img src="https://placehold.co/800x600/E2E8F0/4A5568?text=Bagan+Struktur+KWT"
-                                alt="Bagan Struktur KWT" class="w-full h-auto rounded">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Geografis Desa Section -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Geografis Desa</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <!-- Data Geografis -->
-                    <div class="space-y-6">
-                        <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center">
-                            <i class="fas fa-ruler-combined fa-3x text-blue-500 mr-6"></i>
-                            <div>
-                                <p class="text-gray-600 text-lg">Luas Desa</p>
-                                <p class="text-2xl font-bold text-gray-800">219.775 Ha</p>
-                            </div>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center">
-                            <i class="fas fa-users fa-3x text-green-500 mr-6"></i>
-                            <div>
-                                <p class="text-gray-600 text-lg">Jumlah Penduduk</p>
-                                <p class="text-2xl font-bold text-gray-800">3.336 Jiwa</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Peta -->
-                    <div class="w-full rounded-lg shadow-xl overflow-hidden">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.50129577545!2d109.68519127415443!3d-7.736529376682383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac937ffd1581b%3A0xea9837db6df1c126!2sBalai%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751775240615!5m2!1sid!2sid"
-                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Aparat Pemerintah Desa</h2>
+                <p class="text-center text-gray-500 mb-12">Kenali lebih dekat para perangkat desa yang berdedikasi untuk
+                    melayani masyarakat.</p>
+                <div id="aparat-desa-container"
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <!-- Data aparat desa akan dimuat oleh JavaScript -->
                 </div>
             </div>
         </section>
@@ -312,7 +216,8 @@
         </div>
     </div>
 
-    <script src="../js/profil-desa.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/struktur-organisasi.js"></script>
 </body>
 
 </html>
