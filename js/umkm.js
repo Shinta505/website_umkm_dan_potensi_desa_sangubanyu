@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
     const customerDataModal = document.getElementById('customer-data-modal');
     const customerForm = document.getElementById('customer-form');
+    const editCustomerDataButton = document.getElementById('edit-customer-data-button');
+    const customerInfo = document.getElementById('customer-info');
+
     const umkmListView = document.getElementById('umkm-list-view');
     const umkmDetailView = document.getElementById('umkm-detail-view');
     const umkmListContainer = document.getElementById('umkm-list-container');
@@ -23,15 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STATE APLIKASI ---
     let allUmkmData = [];
     let allProdukData = [];
-    let cart = []; // Keranjang ini sekarang akan dikelola per UMKM
-    let currentUmkmId = null; // --- [MODIFIKASI] Menyimpan ID UMKM yang sedang aktif
+    let cart = [];
+    let currentUmkmId = null;
     let currentUmkmContact = '';
 
     // --- FUNGSI UTAMA ---
 
-    /**
-     * Inisialisasi halaman: cek data pelanggan, muat data UMKM.
-     */
     function initializePage() {
         setupMobileMenu();
         setupComplaintModal();
@@ -39,21 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAllUmkm();
         loadAllProduk();
         addEventListeners();
-        // [MODIFIKASI] updateCartView tidak perlu dipanggil di awal karena keranjang per UMKM
     }
 
     /**
-     * Mengecek apakah data pelanggan sudah ada di localStorage.
+     * Memeriksa, menampilkan, dan mengisi data pelanggan.
      */
     function checkCustomerData() {
         const customer = JSON.parse(localStorage.getItem('customerData'));
         if (!customer || !customer.nama || !customer.alamat || !customer.nomorHp) {
             customerDataModal.style.display = 'flex';
+            editCustomerDataButton.classList.add('hidden'); // Sembunyikan tombol edit jika data belum ada
         } else {
             customerDataModal.style.display = 'none';
             mainContent.classList.remove('hidden');
-            // [MODIFIKASI] Tombol keranjang tidak ditampilkan secara global lagi
-            // cartButton.classList.remove('hidden'); 
+            editCustomerDataButton.classList.remove('hidden');
+
+            // Isi form dengan data yang ada untuk diedit nanti
+            document.getElementById('nama_lengkap').value = customer.nama;
+            document.getElementById('alamat').value = customer.alamat;
+            document.getElementById('nomor_hp').value = customer.nomorHp;
+
+            // Tampilkan info pelanggan
+            customerInfo.innerHTML = `Selamat datang, <strong>${customer.nama}</strong>!`;
         }
     }
 
@@ -116,12 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const umkm = allUmkmData.find(u => u.id_umkm.toString() === umkmId);
         const productsOfUmkm = allProdukData.filter(p => p.id_umkm.toString() === umkmId);
 
-        // --- [MODIFIKASI] Logika untuk keranjang per UMKM ---
         currentUmkmId = umkmId;
         currentUmkmContact = umkm.kontak_umkm;
-        loadCartForCurrentUmkm(); // Memuat keranjang spesifik untuk UMKM ini
-        cartButton.classList.remove('hidden'); // Menampilkan tombol keranjang
-        // --- Akhir Modifikasi ---
+        loadCartForCurrentUmkm();
+        cartButton.classList.remove('hidden');
 
         let productsHtml = '<p class="text-gray-500">Belum ada produk untuk UMKM ini.</p>';
         if (productsOfUmkm.length > 0) {
@@ -180,32 +185,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- LOGIKA KERANJANG BELANJA (CART) ---
 
-    /**
-     * [MODIFIKASI] Memuat keranjang dari localStorage untuk UMKM yang sedang aktif.
-     */
     function loadCartForCurrentUmkm() {
         const savedCart = localStorage.getItem('shoppingCart_' + currentUmkmId);
         cart = savedCart ? JSON.parse(savedCart) : [];
         updateCartView();
     }
 
-    /**
-     * [MODIFIKASI] Menyimpan keranjang ke localStorage untuk UMKM yang sedang aktif.
-     */
     function saveCartForCurrentUmkm() {
         if (currentUmkmId) {
             localStorage.setItem('shoppingCart_' + currentUmkmId, JSON.stringify(cart));
         }
     }
 
-    /**
-     * Menambahkan produk ke keranjang belanja.
-     */
     function addToCart(productId) {
         const productToAdd = allProdukData.find(p => p.id_produk.toString() === productId);
         if (!productToAdd) return;
 
-        // Memastikan produk yang ditambahkan berasal dari UMKM yang sama
         if (cart.length > 0 && cart[0].id_umkm !== productToAdd.id_umkm) {
             showNotification("Anda hanya bisa memesan dari satu UMKM dalam satu waktu.", "error");
             return;
@@ -216,7 +211,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (existingItem) {
             existingItem.quantity++;
         } else {
-            cart.push({ ...productToAdd, quantity: 1 });
+            cart.push({
+                ...productToAdd,
+                quantity: 1
+            });
         }
 
         saveCartForCurrentUmkm();
@@ -315,12 +313,10 @@ document.addEventListener('DOMContentLoaded', () => {
         orderDetails += `No. HP: ${customer.nomorHp}\n\n`;
         orderDetails += "Mohon konfirmasi ketersediaan dan total pembayarannya. Terima kasih.";
 
-        // Menggunakan nomor kontak UMKM yang sedang aktif
         const whatsappUrl = `https://wa.me/${currentUmkmContact}?text=${encodeURIComponent(orderDetails)}`;
 
         window.open(whatsappUrl, '_blank');
 
-        // Kosongkan keranjang setelah memesan
         cart = [];
         saveCartForCurrentUmkm();
         updateCartView();
@@ -348,8 +344,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 nomorHp: document.getElementById('nomor_hp').value
             };
             localStorage.setItem('customerData', JSON.stringify(customerData));
-            customerDataModal.style.display = 'none';
-            mainContent.classList.remove('hidden');
+            showNotification('Data berhasil disimpan!', 'success');
+            checkCustomerData(); // Memanggil ulang fungsi untuk merefresh tampilan
+        });
+
+        editCustomerDataButton.addEventListener('click', () => {
+            customerDataModal.style.display = 'flex';
         });
 
         umkmListContainer.addEventListener('click', (e) => {
@@ -361,16 +361,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         umkmDetailView.addEventListener('click', (e) => {
-            // [MODIFIKASI] Logika saat tombol 'kembali' di klik
             if (e.target.id === 'back-to-list-button') {
-                saveCartForCurrentUmkm(); // Simpan keranjang sebelum keluar
+                saveCartForCurrentUmkm();
                 currentUmkmId = null;
-                cart = []; // Kosongkan state keranjang
+                cart = [];
                 umkmDetailView.classList.add('hidden');
                 umkmListView.classList.remove('hidden');
                 umkmDetailView.innerHTML = '';
-                cartButton.classList.add('hidden'); // Sembunyikan tombol keranjang
-                updateCartView(); // Reset tampilan keranjang
+                cartButton.classList.add('hidden');
+                updateCartView();
             }
             if (e.target.classList.contains('add-to-cart-button')) {
                 const productId = e.target.dataset.productId;
