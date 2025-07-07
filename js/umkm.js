@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showUmkmDetail(umkmId) {
         const umkm = allUmkmData.find(u => u.id_umkm.toString() === umkmId);
         const productsOfUmkm = allProdukData.filter(p => p.id_umkm.toString() === umkmId);
-        
+
         // --- [MODIFIKASI] Logika untuk keranjang per UMKM ---
         currentUmkmId = umkmId;
         currentUmkmContact = umkm.kontak_umkm;
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
         }
-        
+
         const mapHtml = umkm.peta_umkm
             ? `<div class="w-full rounded-lg shadow-xl overflow-hidden mt-6">${umkm.peta_umkm}</div>`
             : '<p class="text-gray-500 mt-4">Peta lokasi tidak tersedia.</p>';
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- LOGIKA KERANJANG BELANJA (CART) ---
-    
+
     /**
      * [MODIFIKASI] Memuat keranjang dari localStorage untuk UMKM yang sedang aktif.
      */
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addToCart(productId) {
         const productToAdd = allProdukData.find(p => p.id_produk.toString() === productId);
         if (!productToAdd) return;
-        
+
         // Memastikan produk yang ditambahkan berasal dari UMKM yang sama
         if (cart.length > 0 && cart[0].id_umkm !== productToAdd.id_umkm) {
             showNotification("Anda hanya bisa memesan dari satu UMKM dalam satu waktu.", "error");
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveCartForCurrentUmkm();
         updateCartView();
     }
-    
+
     function increaseQuantity(productId) {
         const item = cart.find(item => item.id_produk === productId);
         if (item) {
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         cartSummaryContainer.dataset.total = subtotal;
     }
-    
+
     function createWhatsAppOrder() {
         if (cart.length === 0) return;
 
@@ -382,7 +382,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const searchTerm = e.target.value.toLowerCase();
             const filteredUmkm = allUmkmData.filter(umkm =>
                 umkm.nama_umkm.toLowerCase().includes(searchTerm) ||
-                umkm.pemilik_umkm.toLowerCase().includes(searchTerm)
+                umkm.pemilik_umkm.toLowerCase().includes(searchTerm) ||
+                (umkm.deskripsi_umkm && umkm.deskripsi_umkm.toLowerCase().includes(searchTerm))
             );
             displayUmkm(filteredUmkm);
         });
@@ -403,10 +404,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 decreaseQuantity(productId);
             }
         });
-        
+
         orderWhatsappButton.addEventListener('click', createWhatsAppOrder);
     }
-    
+
     function setupMobileMenu() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
