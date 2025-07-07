@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOR & KWT - Website Desa Sangubanyu</title>
+    <title>Peta Desa - Website Desa Sangubanyu</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -33,9 +33,10 @@
                     <a href="profil-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Profil Desa</a>
                     <a href="struktur-organisasi.html" class="text-gray-600 hover:text-blue-600 font-medium">Struktur
                         Organisasi</a>
-                    <a href="gor-kwt.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">GOR & KWT</a>
+                    <a href="gor-kwt.html" class="text-gray-600 hover:text-blue-600 font-medium">GOR & KWT</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">UMKM</a>
-                    <a href="peta-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Peta Desa</a>
+                    <a href="peta-desa.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Peta
+                        Desa</a>
                 </div>
 
                 <div class="md:hidden">
@@ -51,105 +52,88 @@
                     Desa</a>
                 <a href="struktur-organisasi.html"
                     class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Struktur Organisasi</a>
-                <a href="gor-kwt.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">GOR &
-                    KWT</a>
+                <a href="gor-kwt.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">GOR & KWT</a>
                 <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">UMKM</a>
-                <a href="peta-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Peta Desa</a>
+                <a href="peta-desa.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">Peta
+                    Desa</a>
             </div>
         </div>
     </nav>
 
-    <nav class="bg-gray-800 text-white sticky top-[76px] z-40">
+    <main class="py-16">
         <div class="container mx-auto px-4">
-            <div class="flex justify-center items-center space-x-8 py-3">
-                <a href="#gor" class="hover:text-blue-300 font-medium">GOR</a>
-                <a href="#kwt" class="hover:text-blue-300 font-medium">KWT</a>
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">Peta Desa Sangubanyu</h1>
+            <p class="text-lg text-center text-gray-600 mb-12">Temukan lokasi fasilitas umum di desa kami.</p>
+
+            <div class="max-w-2xl mx-auto mb-8">
+                <label for="location-select" class="block text-gray-700 font-medium mb-2">Pilih Lokasi:</label>
+                <select id="location-select"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm">
+                    <option
+                        value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5012957754593!2d109.68519127415443!3d-7.736529376682383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac937ffd1581b%3A0xea9837db6df1c126!2sBalai%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751852761822!5m2!1sid!2sid">
+                        Balai Desa</option>
+                    <optgroup label="Tempat Ibadah">
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3953.4807589522593!2d109.6884601996761!3d-7.738719853416202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1smasjid%20sekitar%20desa%20sangubanyu%20kebumen!5e0!3m2!1sid!2sid!4v1751852639843!5m2!1sid!2sid">
+                            Masjid</option>
+                    </optgroup>
+                    <optgroup label="Fasilitas Umum">
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.499142653522!2d109.68324027050885!3d-7.736759059603046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac9c97bf20bc1%3A0xad48bbb60fb290cb!2sGOR%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751852695284!5m2!1sid!2sid">
+                            GOR Sangubanyu</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4806591210604!2d109.68846020000001!3d-7.738730500000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac90052f5a28b%3A0xc9fc895214c5bafe!2sKelompok%20Wanita%20Tani%20-%20Werdi%20Dadi!5e0!3m2!1sid!2sid!4v1751852726288!5m2!1sid!2sid">
+                            KWT Werdi Dadi</option>
+                    </optgroup>
+                    <optgroup label="Pendidikan">
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4414059576197!2d109.68320087050951!3d-7.742915559661421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac94a7779038d%3A0x3c05641d092cc95a!2sSD%20NEGERI%201%20SANGUBANYU!5e0!3m2!1sid!2sid!4v1751852908021!5m2!1sid!2sid">
+                            SD Negeri 1 Sangubanyu</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5091293613464!2d109.68529987415444!3d-7.735693676672672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac938086fed9f%3A0x9c8a4b9e14fe3591!2sSDN%202%20Sangubangu!5e0!3m2!1sid!2sid!4v1751852933930!5m2!1sid!2sid">
+                            SD Negeri 2 Sangubanyu</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5221578533124!2d109.68532637415444!3d-7.734303576656529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac9335051cb79%3A0xd3d3b830fbf09c83!2sMi%20ayyusufiyah!5e0!3m2!1sid!2sid!4v1751852972431!5m2!1sid!2sid">
+                            MIS Al Yusifiyah Buluspesantren</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5232008943017!2d109.68534477415456!3d-7.734192276655219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac93878d88ebd%3A0x36fc4401d7c680d6!2sMTs%20Ay-Yusufiah%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751853015583!5m2!1sid!2sid">
+                            MTsS Ay Yusifiyah Sangubanyu</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4974766325367!2d109.68540517415454!3d-7.736936776687164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac937fd3d4655%3A0xad0b085fa77f2410!2sSMK%20PUSPA%20JATI%20BULUSPESANTREN!5e0!3m2!1sid!2sid!4v1751853046319!5m2!1sid!2sid">
+                            SMK Puspa Jati</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.695539627127!2d109.67487917415407!3d-7.7157805764414205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac9fdf0948355%3A0x4ec379efc9e57e0f!2sPos%20PAUD%20Kasih%20Bunda!5e0!3m2!1sid!2sid!4v1751853077917!5m2!1sid!2sid">
+                            Pos PAUD Setulus Bunda</option>
+                    </optgroup>
+                    <optgroup label="Kesehatan">
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1012402.9713772178!2d108.11936536655553!3d-7.607685278963642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac900607b3987%3A0x6cc576b488cb0d85!2sPKD%20SANGUBANYU!5e0!3m2!1sid!2sid!4v1751853587900!5m2!1sid!2sid">
+                            Poliklinik Kesehatan Desa</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1012690.876228314!2d109.042674146875!3d-7.484706699999985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a8f334d5f52f7%3A0x2d2fbe4518a7d12e!2sPosyandu%20Sangubanyu%20Utara!5e0!3m2!1sid!2sid!4v1751853801498!5m2!1sid!2sid">
+                            Posyandu Sangubanyu Utara</option>
+                    </optgroup>
+                    <optgroup label="Pasar">
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63253.51825693432!2d109.6252637322884!3d-7.75319615398296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac93ee24c8c63%3A0x9ae0b6e6516541f4!2sPasar%20Silumbu!5e0!3m2!1sid!2sid!4v1751853955327!5m2!1sid!2sid">
+                            Pasar Silumbu</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63253.51825693432!2d109.6252637322884!3d-7.75319615398296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7acbd8a7495d27%3A0x1dc3a284ed53ee6e!2sPasar%20Bedug!5e0!3m2!1sid!2sid!4v1751853992189!5m2!1sid!2sid">
+                            Pasar Bedug</option>
+                        <option
+                            value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63253.51825693432!2d109.6252637322884!3d-7.75319615398296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7acea986d6dfdf%3A0xdd62b62fd7daf317!2sPasar%20Bocor!5e0!3m2!1sid!2sid!4v1751854004335!5m2!1sid!2sid">
+                            Pasar Bocor</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div id="map-container" class="w-full rounded-lg shadow-xl overflow-hidden bg-gray-200">
+                <iframe id="map-iframe"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5012957754593!2d109.68519127415443!3d-7.736529376682383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac937ffd1581b%3A0xea9837db6df1c126!2sBalai%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751852761822!5m2!1sid!2sid"
+                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-    </nav>
-
-
-    <main>
-        <section id="gor" class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Gedung Olahraga (GOR)</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Foto+GOR"
-                            alt="Foto GOR Desa Sangubanyu" class="w-full h-auto rounded-lg shadow-lg">
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Detail Informasi</h3>
-                            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li><strong>Sewa per Jam:</strong> (Detail harga sewa)</li>
-                                <li><strong>Fasilitas:</strong> (Sebutkan fasilitas yang tersedia)</li>
-                                <li><strong>Jam Buka:</strong> (Sebutkan jam buka)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Kontak</h3>
-                            <a href="https://wa.me/6281325183461?text=Saya%20mau%20tau%20lebih%20lanjut%20mengenai%20sewa%20GOR%20di%20desa%20Sangubanyu"
-                                target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition">
-                                <i class="fab fa-whatsapp fa-lg mr-2"></i> Hubungi via WhatsApp
-                            </a>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Lokasi</h3>
-                            <div class="w-full rounded-lg shadow-xl overflow-hidden">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4990925901593!2d109.68785369999999!3d-7.7367644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac9c97bf20bc1%3A0xad48bbb60fb290cb!2sGOR%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751849483276!5m2!1sid!2sid"
-                                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="kwt" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Kelompok Wanita Tani (KWT)</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6 lg:order-last">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Detail Informasi</h3>
-                            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li><strong>Jenis Tanaman:</strong> (Sebutkan tanaman yang ditanam)</li>
-                                <li><strong>Jam Buka:</strong> (Sebutkan jam buka)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Kontak</h3>
-                            <p class="text-gray-700">(Sediakan kontak yang bisa dihubungi)</p>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Lokasi</h3>
-                            <div class="w-full rounded-lg shadow-xl overflow-hidden">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4806591210604!2d109.68846020000001!3d-7.738730500000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac90052f5a28b%3A0xc9fc895214c5bafe!2sKelompok%20Wanita%20Tani%20-%20Werdi%20Dadi!5e0!3m2!1sid!2sid!4v1751850224210!5m2!1sid!2sid"
-                                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-8">
-                        <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Foto+Tempat+KWT"
-                            alt="Foto Tempat KWT Desa Sangubanyu" class="w-full h-auto rounded-lg shadow-lg">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Bagan Struktur Organisasi KWT
-                            </h3>
-                            <div class="bg-white p-4 rounded-lg shadow-lg">
-                                <img src="https://placehold.co/800x600/E2E8F0/4A5568?text=Bagan+Struktur+KWT"
-                                    alt="Bagan Struktur KWT" class="w-full h-auto rounded">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="bg-gray-800 text-white pt-12 pb-8">
@@ -193,7 +177,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
-                <p>&copy; <span id="current-year"></span> Pemerintah Desa Sangubanyu. All rights reserved.</p>
+                <p>© <span id="current-year"></span> Pemerintah Desa Sangubanyu. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -258,7 +242,7 @@
         </div>
     </div>
 
-    <script src="../js/gor-kwt.js"></script>
+    <script src="../js/peta-desa.js"></script>
 </body>
 
 </html>
