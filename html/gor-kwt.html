@@ -4,48 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Desa Sangubanyu</title>
+    <title>GOR & KWT - Website Desa Sangubanyu</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="bg-gray-100">
 
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <!-- Logo and Village Name -->
                 <div class="flex items-center space-x-2">
-                    <img src="asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-10 w-10"
+                    <img src="../asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-10 w-10"
                         onerror="this.onerror=null;this.src='https://placehold.co/40x40/cccccc/333333?text=Logo';">
                     <span class="font-bold text-lg text-gray-800">Desa Sangubanyu</span>
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Home</a>
-                    <a href="html/profil-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Profil
-                        Desa</a>
-                    <a href="html/struktur-organisasi.html"
-                        class="text-gray-600 hover:text-blue-600 font-medium">Struktur Organisasi</a>
-                    <a href="html/gor-kwt.html" class="text-gray-600 hover:text-blue-600 font-medium">GOR & KWT</a>
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
+                    <a href="profil-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Profil Desa</a>
+                    <a href="struktur-organisasi.html" class="text-gray-600 hover:text-blue-600 font-medium">Struktur
+                        Organisasi</a>
+                    <a href="gor-kwt.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">GOR & KWT</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">UMKM</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Peta Desa</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
                         <i class="fas fa-bars fa-lg"></i>
@@ -53,14 +45,13 @@
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden py-2">
-                <a href="index.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">Home</a>
-                <a href="html/profil-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Profil
+                <a href="../index.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Home</a>
+                <a href="profil-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Profil
                     Desa</a>
-                <a href="html/struktur-organisasi.html"
+                <a href="struktur-organisasi.html"
                     class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Struktur Organisasi</a>
-                <a href="html/gor-kwt.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">GOR &
+                <a href="gor-kwt.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">GOR &
                     KWT</a>
                 <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">UMKM</a>
                 <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Peta Desa</a>
@@ -68,90 +59,105 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <nav class="bg-gray-800 text-white sticky top-[76px] z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center items-center space-x-8 py-3">
+                <a href="#gor" class="hover:text-blue-300 font-medium">GOR</a>
+                <a href="#kwt" class="hover:text-blue-300 font-medium">KWT</a>
+            </div>
+        </div>
+    </nav>
+
+
     <main>
-        <!-- Hero Banner -->
-        <section class="hero-bg text-white h-[60vh] flex items-center justify-center">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Selamat Datang di Desa Sangubanyu</h1>
-                <p class="text-lg md:text-xl">Mengembangkan Potensi Desa dan UMKM untuk Kesejahteraan Bersama</p>
-            </div>
-        </section>
-
-        <!-- Maps Section -->
-        <section class="py-16 bg-white">
+        <section id="gor" class="py-16 bg-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Lokasi Balai Desa</h2>
-                <div class="w-full rounded-lg shadow-xl overflow-hidden">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.50129577545!2d109.68519127415443!3d-7.736529376682383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac937ffd1581b%3A0xea9837db6df1c126!2sBalai%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751775240615!5m2!1sid!2sid"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- Struktur Organisasi Section -->
-        <section class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Struktur Organisasi Desa</h2>
-                <p class="text-center text-gray-500 mb-12">Perangkat Desa Sangubanyu yang Siap Melayani</p>
-                <div id="struktur-organisasi-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Data akan dimuat oleh JavaScript dari API -->
-                </div>
-                <div class="text-center mt-12">
-                    <a href="#"
-                        class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">Lihat
-                        Semua</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- GOR & KWT Section -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Fasilitas & Kelompok Desa</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Card GOR -->
-                    <div
-                        class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <a href="#">
-                            <img src="https://placehold.co/600x400/a0aec0/ffffff?text=GOR+Desa" alt="Gedung Olahraga"
-                                class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Gedung Olahraga (GOR)</h3>
-                                <p class="text-gray-600">Fasilitas olahraga serbaguna untuk kegiatan masyarakat Desa
-                                    Sangubanyu.</p>
-                            </div>
-                        </a>
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Gedung Olahraga (GOR)</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Foto+GOR"
+                            alt="Foto GOR Desa Sangubanyu" class="w-full h-auto rounded-lg shadow-lg">
                     </div>
-                    <!-- Card KWT -->
-                    <div
-                        class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <a href="#">
-                            <img src="https://placehold.co/600x400/a0aec0/ffffff?text=KWT+Desa"
-                                alt="Kelompok Wanita Tani" class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Kelompok Wanita Tani (KWT)</h3>
-                                <p class="text-gray-600">Wadah pemberdayaan wanita di bidang pertanian dan pengolahan
-                                    hasil tani.</p>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Detail Informasi</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Sewa per Jam:</strong> (Detail harga sewa)</li>
+                                <li><strong>Fasilitas:</strong> (Sebutkan fasilitas yang tersedia)</li>
+                                <li><strong>Jam Buka:</strong> (Sebutkan jam buka)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Kontak</h3>
+                            <a href="https://wa.me/6281325183461?text=Saya%20mau%20tau%20lebih%20lanjut%20mengenai%20sewa%20GOR%20di%20desa%20Sangubanyu"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition">
+                                <i class="fab fa-whatsapp fa-lg mr-2"></i> Hubungi via WhatsApp
+                            </a>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Lokasi</h3>
+                            <div class="w-full rounded-lg shadow-xl overflow-hidden">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4990925901593!2d109.68785369999999!3d-7.7367644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac9c97bf20bc1%3A0xad48bbb60fb290cb!2sGOR%20Desa%20Sangubanyu!5e0!3m2!1sid!2sid!4v1751849483276!5m2!1sid!2sid"
+                                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="kwt" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Kelompok Wanita Tani (KWT)</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 lg:order-last">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Detail Informasi</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Jenis Tanaman:</strong> (Sebutkan tanaman yang ditanam)</li>
+                                <li><strong>Jam Buka:</strong> (Sebutkan jam buka)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Kontak</h3>
+                            <p class="text-gray-700">(Sediakan kontak yang bisa dihubungi)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Lokasi</h3>
+                            <div class="w-full rounded-lg shadow-xl overflow-hidden">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4806591210604!2d109.68846020000001!3d-7.738730500000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ac90052f5a28b%3A0xc9fc895214c5bafe!2sKelompok%20Wanita%20Tani%20-%20Werdi%20Dadi!5e0!3m2!1sid!2sid!4v1751850224210!5m2!1sid!2sid"
+                                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Foto+Tempat+KWT"
+                            alt="Foto Tempat KWT Desa Sangubanyu" class="w-full h-auto rounded-lg shadow-lg">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Bagan Struktur Organisasi KWT
+                            </h3>
+                            <div class="bg-white p-4 rounded-lg shadow-lg">
+                                <img src="https://placehold.co/800x600/E2E8F0/4A5568?text=Bagan+Struktur+KWT"
+                                    alt="Bagan Struktur KWT" class="w-full h-auto rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white pt-12 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Village Info -->
                 <div class="md:col-span-1">
                     <div class="flex items-center mb-4">
-                        <img src="asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-12 w-12 mr-3"
+                        <img src="../asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-12 w-12 mr-3"
                             onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Logo';">
                         <div>
                             <h3 class="font-bold text-xl">Pemerintah Desa Sangubanyu</h3>
@@ -164,10 +170,8 @@
                     </p>
                 </div>
 
-                <!-- Spacer -->
                 <div class="hidden md:block"></div>
 
-                <!-- Hubungi Kami -->
                 <div>
                     <h3 class="font-bold text-xl mb-4">Hubungi Kami</h3>
                     <ul class="space-y-3">
@@ -194,16 +198,14 @@
         </div>
     </footer>
 
-    <!-- Floating Complaint Button -->
     <button id="complaint-button"
-        class="fixed bottom-6 right-6 bg-red-600 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:bg-red-700 transition-transform transform hover:scale-110">
+        class="fixed bottom-6 right-6 bg-red-600 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:bg-red-700 transition-transform transform hover:scale-110 z-50">
         <i class="fas fa-bullhorn fa-lg"></i>
         <span class="sr-only">Buka form pengaduan</span>
     </button>
 
-    <!-- Complaint Modal -->
     <div id="complaint-modal"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start overflow-y-auto p-4 z-50 pt-10">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start overflow-y-auto p-4 z-[60] pt-10">
         <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg p-8 relative mb-10">
             <button id="close-modal-button" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
                 <i class="fas fa-times fa-2x"></i>
@@ -256,8 +258,7 @@
         </div>
     </div>
 
-
-    <script src="script.js"></script>
+    <script src="../js/gor-kwt.js"></script>
 </body>
 
 </html>
