@@ -1,3 +1,26 @@
+// --- Animation on Scroll Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger animation when 10% of the element is visible
+    });
+
+    // Observe elements that are already in the DOM
+    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Panggil fungsi untuk memuat struktur organisasi
+    loadStrukturOrganisasi(observer); // Pass the observer to the function
+});
+
+
 // JavaScript for Mobile Menu
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -29,7 +52,7 @@ complaintModal.addEventListener('click', (event) => {
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
 // --- Fetch Data Struktur Organisasi from API ---
-async function loadStrukturOrganisasi() {
+async function loadStrukturOrganisasi(observer) { // Accept the observer as an argument
     const container = document.getElementById('struktur-organisasi-container');
     const apiUrl = 'https://website-sangubayu-be.vercel.app/api/struktur-organisasi';
 
@@ -52,7 +75,7 @@ async function loadStrukturOrganisasi() {
         dataToShow.forEach(pejabat => {
             const fotoUrl = pejabat.foto_pejabat || 'https://placehold.co/150x150/E2E8F0/4A5568?text=Foto';
             const card = `
-                        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300 animate-on-scroll slide-in-up-reveal">
                             <img src="${fotoUrl}" alt="Foto ${pejabat.nama_pejabat}" class="w-32 h-32 mx-auto rounded-full mb-4 border-4 border-gray-200 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/150x150/E2E8F0/4A5568?text=Foto';">
                             <h3 class="text-xl font-semibold text-gray-800">${pejabat.nama_pejabat}</h3>
                             <p class="text-gray-500">${pejabat.nama_jabatan}</p>
@@ -60,6 +83,13 @@ async function loadStrukturOrganisasi() {
                     `;
             container.innerHTML += card;
         });
+
+        // Re-observe the newly added elements
+        const newElementsToAnimate = container.querySelectorAll('.animate-on-scroll');
+        newElementsToAnimate.forEach(element => {
+            observer.observe(element);
+        });
+
 
     } catch (error) {
         console.error('Gagal mengambil data struktur organisasi:', error);
@@ -114,10 +144,4 @@ complaintForm.addEventListener('submit', function (event) {
         formMessage.classList.add('hidden');
         complaintModal.classList.add('hidden');
     }, 4000); // Tutup modal setelah 4 detik
-});
-
-
-// Panggil fungsi saat halaman dimuat
-document.addEventListener('DOMContentLoaded', () => {
-    loadStrukturOrganisasi();
 });

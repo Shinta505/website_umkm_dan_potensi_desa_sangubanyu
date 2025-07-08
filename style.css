@@ -28,3 +28,67 @@ body {
     border-left: 4px solid #3B82F6;
     /* blue-500 */
 }
+
+
+/* --- ANIMATION STYLES (ENHANCED) --- */
+
+/* Initial state for elements to be animated */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother, faster easing */
+}
+
+/* --- Specific Animation Definitions --- */
+
+/* For Hero Section */
+.fade-in-down-dramatic {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.fade-in-up-dramatic {
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+/* For Section Titles */
+.fade-in-zoom {
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+/* For Map and Images */
+.slide-in-up-reveal {
+    transform: translateY(80px);
+    opacity: 0;
+}
+
+/* For Cards sliding from sides */
+.slide-in-left-dramatic {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+
+.slide-in-right-dramatic {
+    transform: translateX(100px);
+    opacity: 0;
+}
+
+/* For Buttons or small elements */
+.zoom-in-pop {
+    transform: scale(0.5);
+    opacity: 0;
+}
+
+/* Final state for elements when they become visible */
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: none; /* Reset transform to original state */
+}
+
+/* --- Staggered Animation for Organization Cards --- */
+/* This creates a more noticeable cascading effect */
+#struktur-organisasi-container .animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+#struktur-organisasi-container .animate-on-scroll:nth-child(2) { transition-delay: 0.25s; }
+#struktur-organisasi-container .animate-on-scroll:nth-child(3) { transition-delay: 0.4s; }
+#struktur-organisasi-container .animate-on-scroll:nth-child(4) { transition-delay: 0.55s; }
