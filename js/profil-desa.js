@@ -1,3 +1,25 @@
+// --- Animation on Scroll Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Inisialisasi IntersectionObserver untuk memantau elemen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Jika elemen terlihat di layar, tambahkan kelas 'is-visible'
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Animasi terpicu saat 10% elemen terlihat
+    });
+
+    // Ambil semua elemen yang memiliki kelas 'animate-on-scroll'
+    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+    // Amati setiap elemen
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+});
+
 // JavaScript for Mobile Menu
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
