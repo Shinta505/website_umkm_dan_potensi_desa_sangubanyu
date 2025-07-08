@@ -1,3 +1,24 @@
+// --- Animation on Scroll Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the element is visible on the screen, add the 'is-visible' class
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Animation is triggered when 10% of the element is visible
+    });
+
+    // Get all elements that have the 'animate-on-scroll' class
+    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+    // Observe each element
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+});
+
 // JavaScript for Mobile Menu
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
