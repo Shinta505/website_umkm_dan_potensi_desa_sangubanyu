@@ -6,35 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Struktur Organisasi - Website Desa Sangubanyu</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="bg-gray-100">
 
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <!-- Logo and Village Name -->
                 <div class="flex items-center space-x-2">
                     <img src="../asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-10 w-10"
                         onerror="this.onerror=null;this.src='https://placehold.co/40x40/cccccc/333333?text=Logo';">
                     <span class="font-bold text-lg text-gray-800">Desa Sangubanyu</span>
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="../index.html" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
                     <a href="profil-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Profil Desa</a>
@@ -45,7 +38,6 @@
                     <a href="peta-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Peta Desa</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
                         <i class="fas fa-bars fa-lg"></i>
@@ -53,7 +45,6 @@
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden py-2">
                 <a href="../index.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Home</a>
                 <a href="profil-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Profil
@@ -68,48 +59,46 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main>
-        <!-- Page Header -->
         <section class="page-header text-white py-20">
             <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold">Struktur Organisasi Desa</h1>
-                <p class="mt-2 text-lg text-gray-200">Pemerintahan Desa Sangubanyu</p>
+                <h1 class="text-4xl md:text-5xl font-bold animate-on-scroll fade-in-down-dramatic">Struktur Organisasi
+                    Desa</h1>
+                <p class="mt-2 text-lg text-gray-200 animate-on-scroll fade-in-up-dramatic"
+                    style="transition-delay: 0.2s;">Pemerintahan Desa Sangubanyu</p>
             </div>
         </section>
 
-        <!-- Bagan Struktur Organisasi Section -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Bagan Struktur Organisasi Pemerintahan
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 animate-on-scroll fade-in-zoom">Bagan
+                    Struktur Organisasi Pemerintahan
                     Desa Sangubanyu</h2>
-                <div class="bg-white p-4 rounded-lg shadow-lg max-w-5xl mx-auto">
+                <div class="bg-white p-4 rounded-lg shadow-lg max-w-5xl mx-auto animate-on-scroll zoom-in-pop">
                     <img src="https://placehold.co/1200x800/E2E8F0/4A5568?text=Bagan+Struktur+Organisasi+Desa"
                         alt="Bagan Struktur Organisasi Pemerintahan Desa Sangubanyu" class="w-full h-auto rounded">
                 </div>
             </div>
         </section>
 
-        <!-- Aparat Pemerintah Desa Section -->
         <section class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Aparat Pemerintah Desa</h2>
-                <p class="text-center text-gray-500 mb-12">Kenali lebih dekat para perangkat desa yang berdedikasi untuk
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2 animate-on-scroll fade-in-zoom">Aparat
+                    Pemerintah Desa</h2>
+                <p class="text-center text-gray-500 mb-12 animate-on-scroll fade-in-zoom"
+                    style="transition-delay: 0.2s;">Kenali lebih dekat para perangkat desa yang berdedikasi untuk
                     melayani masyarakat.</p>
                 <div id="aparat-desa-container"
                     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                    <!-- Data aparat desa akan dimuat oleh JavaScript -->
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white pt-12 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Village Info -->
                 <div class="md:col-span-1">
                     <div class="flex items-center mb-4">
                         <img src="../asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-12 w-12 mr-3"
@@ -125,10 +114,8 @@
                     </p>
                 </div>
 
-                <!-- Spacer -->
                 <div class="hidden md:block"></div>
 
-                <!-- Hubungi Kami -->
                 <div>
                     <h3 class="font-bold text-xl mb-4">Hubungi Kami</h3>
                     <ul class="space-y-3">
@@ -155,14 +142,12 @@
         </div>
     </footer>
 
-    <!-- Floating Complaint Button -->
     <button id="complaint-button"
         class="fixed bottom-6 right-6 bg-red-600 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:bg-red-700 transition-transform transform hover:scale-110">
         <i class="fas fa-bullhorn fa-lg"></i>
         <span class="sr-only">Buka form pengaduan</span>
     </button>
 
-    <!-- Complaint Modal -->
     <div id="complaint-modal"
         class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start overflow-y-auto p-4 z-50 pt-10">
         <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg p-8 relative mb-10">
@@ -217,7 +202,6 @@
         </div>
     </div>
 
-    <!-- Custom JS -->
     <script src="../js/struktur-organisasi.js"></script>
 </body>
 

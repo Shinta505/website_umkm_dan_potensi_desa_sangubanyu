@@ -39,7 +39,7 @@ if (complaintModal) {
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
 // --- Fetch and Display Aparat Desa Data ---
-async function loadAparatDesa() {
+async function loadAparatDesa(observer) {
     const container = document.getElementById('aparat-desa-container');
     const apiUrl = 'https://website-sangubayu-be.vercel.app/api/struktur-organisasi';
 
@@ -65,7 +65,7 @@ async function loadAparatDesa() {
         data.forEach(pejabat => {
             const fotoUrl = pejabat.foto_pejabat || 'https://placehold.co/300x300/E2E8F0/4A5568?text=Foto';
             const card = `
-                <div class="bg-white rounded-lg shadow-md overflow-hidden text-center transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden text-center transform hover:-translate-y-2 transition-transform duration-300 animate-on-scroll slide-in-up-reveal">
                     <div class="h-64 bg-gray-200">
                          <img src="${fotoUrl}" alt="Foto ${pejabat.nama_pejabat}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/300x300/E2E8F0/4A5568?text=Foto';">
                     </div>
@@ -76,6 +76,12 @@ async function loadAparatDesa() {
                 </div>
             `;
             container.innerHTML += card;
+        });
+
+        // Re-observe the newly added elements for animation
+        const newElementsToAnimate = container.querySelectorAll('.animate-on-scroll');
+        newElementsToAnimate.forEach(element => {
+            observer.observe(element);
         });
 
     } catch (error) {
@@ -135,5 +141,23 @@ if (complaintForm) {
 
 // Load data when the page is ready
 document.addEventListener('DOMContentLoaded', () => {
-    loadAparatDesa();
+    // --- Animation on Scroll Logic ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger animation when 10% of the element is visible
+    });
+
+    // Observe static elements that are already in the DOM
+    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+
+    // Load dynamic data and pass the observer
+    loadAparatDesa(observer);
 });
