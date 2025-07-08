@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- KONFIGURASI ---
     const BASE_URL = 'https://website-sangubayu-be.vercel.app/api';
+    const API_WILAYAH_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
 
     // --- ELEMEN DOM ---
     const mainContent = document.getElementById('main-content');
@@ -8,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const customerForm = document.getElementById('customer-form');
     const editCustomerDataButton = document.getElementById('edit-customer-data-button');
     const customerInfo = document.getElementById('customer-info');
+
+    // Elemen form alamat
+    const provinsiSelect = document.getElementById('provinsi');
+    const kotaSelect = document.getElementById('kota');
+    const kecamatanSelect = document.getElementById('kecamatan');
+    const kelurahanSelect = document.getElementById('kelurahan');
 
     const umkmListView = document.getElementById('umkm-list-view');
     const umkmDetailView = document.getElementById('umkm-detail-view');
@@ -39,27 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAllUmkm();
         loadAllProduk();
         addEventListeners();
+        initAddressForm();
     }
 
     /**
-     * Memeriksa, menampilkan, dan mengisi data pelanggan.
+     * Memeriksa dan menampilkan data pelanggan.
      */
     function checkCustomerData() {
         const customer = JSON.parse(localStorage.getItem('customerData'));
-        if (!customer || !customer.nama || !customer.alamat || !customer.nomorHp) {
+        if (!customer || !customer.nama || !customer.alamat) {
             customerDataModal.style.display = 'flex';
-            editCustomerDataButton.classList.add('hidden'); // Sembunyikan tombol edit jika data belum ada
+            editCustomerDataButton.classList.add('hidden');
         } else {
             customerDataModal.style.display = 'none';
             mainContent.classList.remove('hidden');
             editCustomerDataButton.classList.remove('hidden');
 
-            // Isi form dengan data yang ada untuk diedit nanti
+            // Isi form dengan data yang ada
             document.getElementById('nama_lengkap').value = customer.nama;
-            document.getElementById('alamat').value = customer.alamat;
             document.getElementById('nomor_hp').value = customer.nomorHp;
-
-            // Tampilkan info pelanggan
+            // Menampilkan info pelanggan
             customerInfo.innerHTML = `Selamat datang, <strong>${customer.nama}</strong>!`;
         }
     }
@@ -117,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Menampilkan halaman detail untuk satu UMKM.
-     * @param {string} umkmId - ID dari UMKM yang akan ditampilkan.
      */
     function showUmkmDetail(umkmId) {
         const umkm = allUmkmData.find(u => u.id_umkm.toString() === umkmId);
@@ -145,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
         }
 
-        const mapHtml = umkm.peta_umkm
-            ? `<div class="w-full rounded-lg shadow-xl overflow-hidden mt-6">${umkm.peta_umkm}</div>`
-            : '<p class="text-gray-500 mt-4">Peta lokasi tidak tersedia.</p>';
+        const mapHtml = umkm.peta_umkm ?
+            `<div class="w-full rounded-lg shadow-xl overflow-hidden mt-6">${umkm.peta_umkm}</div>` :
+            '<p class="text-gray-500 mt-4">Peta lokasi tidak tersedia.</p>';
 
         umkmDetailView.innerHTML = `
             <button id="back-to-list-button" class="mb-8 text-blue-600 font-semibold hover:underline"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Daftar UMKM</button>
@@ -183,6 +188,91 @@ document.addEventListener('DOMContentLoaded', () => {
         umkmDetailView.classList.remove('hidden');
     }
 
+
+    // --- LOGIKA FORM ALAMAT DINAMIS ---
+
+    /**
+     * Inisialisasi form alamat dengan memuat data provinsi.
+     */
+    async function initAddressForm() {
+        try {
+            const response = await fetch(`${API_WILAYAH_URL}/provinces.json`);
+            const provinces = await response.json();
+            provinsiSelect.innerHTML = '<option value="">Pilih Provinsi...</option>';
+            provinces.forEach(prov => {
+                provinsiSelect.innerHTML += `<option value="${prov.id}">${prov.name}</option>`;
+            });
+        } catch (error) {
+            console.error('Gagal memuat provinsi:', error);
+        }
+    }
+    
+    /**
+     * Mengatur ulang dan menonaktifkan dropdown select.
+     */
+    function resetSelect(select, defaultOptionText) {
+        select.innerHTML = `<option value="">${defaultOptionText}</option>`;
+        select.disabled = true;
+    }
+
+    provinsiSelect.addEventListener('change', async () => {
+        resetSelect(kotaSelect, 'Pilih Kota/Kabupaten...');
+        resetSelect(kecamatanSelect, 'Pilih Kecamatan...');
+        resetSelect(kelurahanSelect, 'Pilih Kelurahan/Desa...');
+        
+        const provId = provinsiSelect.value;
+        if (!provId) return;
+
+        try {
+            const response = await fetch(`${API_WILAYAH_URL}/regencies/${provId}.json`);
+            const cities = await response.json();
+            kotaSelect.disabled = false;
+            cities.forEach(city => {
+                kotaSelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
+            });
+        } catch (error) {
+            console.error('Gagal memuat kota:', error);
+        }
+    });
+
+    kotaSelect.addEventListener('change', async () => {
+        resetSelect(kecamatanSelect, 'Pilih Kecamatan...');
+        resetSelect(kelurahanSelect, 'Pilih Kelurahan/Desa...');
+
+        const cityId = kotaSelect.value;
+        if (!cityId) return;
+
+        try {
+            const response = await fetch(`${API_WILAYAH_URL}/districts/${cityId}.json`);
+            const districts = await response.json();
+            kecamatanSelect.disabled = false;
+            districts.forEach(district => {
+                kecamatanSelect.innerHTML += `<option value="${district.id}">${district.name}</option>`;
+            });
+        } catch (error) {
+            console.error('Gagal memuat kecamatan:', error);
+        }
+    });
+
+    kecamatanSelect.addEventListener('change', async () => {
+        resetSelect(kelurahanSelect, 'Pilih Kelurahan/Desa...');
+        
+        const districtId = kecamatanSelect.value;
+        if (!districtId) return;
+
+        try {
+            const response = await fetch(`${API_WILAYAH_URL}/villages/${districtId}.json`);
+            const villages = await response.json();
+            kelurahanSelect.disabled = false;
+            villages.forEach(village => {
+                kelurahanSelect.innerHTML += `<option value="${village.id}">${village.name}</option>`;
+            });
+        } catch (error) {
+            console.error('Gagal memuat kelurahan:', error);
+        }
+    });
+
+
     // --- LOGIKA KERANJANG BELANJA (CART) ---
 
     function loadCartForCurrentUmkm() {
@@ -207,14 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const existingItem = cart.find(item => item.id_produk === productToAdd.id_produk);
-
         if (existingItem) {
             existingItem.quantity++;
         } else {
-            cart.push({
-                ...productToAdd,
-                quantity: 1
-            });
+            cart.push({ ...productToAdd, quantity: 1 });
         }
 
         saveCartForCurrentUmkm();
@@ -225,11 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function decreaseQuantity(productId) {
         const itemIndex = cart.findIndex(item => item.id_produk === productId);
         if (itemIndex > -1) {
-            if (cart[itemIndex].quantity > 1) {
-                cart[itemIndex].quantity--;
-            } else {
-                cart.splice(itemIndex, 1);
-            }
+            cart[itemIndex].quantity > 1 ? cart[itemIndex].quantity-- : cart.splice(itemIndex, 1);
         }
         saveCartForCurrentUmkm();
         updateCartView();
@@ -237,9 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function increaseQuantity(productId) {
         const item = cart.find(item => item.id_produk === productId);
-        if (item) {
-            item.quantity++;
-        }
+        if (item) item.quantity++;
         saveCartForCurrentUmkm();
         updateCartView();
     }
@@ -279,9 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const subtotal = cart.reduce((sum, item) => sum + (item.harga_produk * item.quantity), 0);
         cartSummaryContainer.innerHTML = `
-            <div class="space-y-2">
-                <div class="flex justify-between font-bold text-lg"><span>Total:</span><span>Rp ${new Intl.NumberFormat('id-ID').format(subtotal)}</span></div>
-            </div>
+            <div class="flex justify-between font-bold text-lg"><span>Total:</span><span>Rp ${new Intl.NumberFormat('id-ID').format(subtotal)}</span></div>
         `;
         cartSummaryContainer.dataset.total = subtotal;
     }
@@ -297,6 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const total = cartSummaryContainer.dataset.total;
+        const alamat = customer.alamat;
+        const formattedAddress = `${alamat.detail}, ${alamat.kelurahan}, ${alamat.kecamatan}, ${alamat.kota}, ${alamat.provinsi}, ${alamat.kodePos}`;
 
         let orderDetails = "Halo, saya ingin memesan produk berikut:\n\n";
         cart.forEach(item => {
@@ -309,14 +389,13 @@ document.addEventListener('DOMContentLoaded', () => {
         orderDetails += `*Total Belanja: Rp ${new Intl.NumberFormat('id-ID').format(total)}*\n\n`;
         orderDetails += "*Data Pemesan:*\n";
         orderDetails += `Nama: ${customer.nama}\n`;
-        orderDetails += `Alamat: ${customer.alamat}\n`;
-        orderDetails += `No. HP: ${customer.nomorHp}\n\n`;
+        orderDetails += `No. HP: ${customer.nomorHp}\n`;
+        orderDetails += `Alamat: ${formattedAddress}\n\n`;
         orderDetails += "Mohon konfirmasi ketersediaan dan total pembayarannya. Terima kasih.";
 
         const whatsappUrl = `https://wa.me/${currentUmkmContact}?text=${encodeURIComponent(orderDetails)}`;
 
         window.open(whatsappUrl, '_blank');
-
         cart = [];
         saveCartForCurrentUmkm();
         updateCartView();
@@ -329,35 +408,45 @@ document.addEventListener('DOMContentLoaded', () => {
         notification.className = `fixed top-20 right-5 ${bgColor} text-white py-2 px-4 rounded-lg shadow-lg z-[100]`;
         notification.textContent = message;
         document.body.appendChild(notification);
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
+        setTimeout(() => notification.remove(), 3000);
     }
 
     // --- PENANGANAN EVENT (EVENT LISTENERS) ---
     function addEventListeners() {
         customerForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
             const customerData = {
                 nama: document.getElementById('nama_lengkap').value,
-                alamat: document.getElementById('alamat').value,
-                nomorHp: document.getElementById('nomor_hp').value
+                nomorHp: document.getElementById('nomor_hp').value,
+                alamat: {
+                    provinsi: provinsiSelect.options[provinsiSelect.selectedIndex].text,
+                    kota: kotaSelect.options[kotaSelect.selectedIndex].text,
+                    kecamatan: kecamatanSelect.options[kecamatanSelect.selectedIndex].text,
+                    kelurahan: kelurahanSelect.options[kelurahanSelect.selectedIndex].text,
+                    detail: document.getElementById('alamat_detail').value,
+                    kodePos: document.getElementById('kode_pos').value
+                }
             };
             localStorage.setItem('customerData', JSON.stringify(customerData));
             showNotification('Data berhasil disimpan!', 'success');
-            checkCustomerData(); // Memanggil ulang fungsi untuk merefresh tampilan
+            checkCustomerData();
         });
 
         editCustomerDataButton.addEventListener('click', () => {
             customerDataModal.style.display = 'flex';
+            // Pre-fill form jika data sudah ada (opsional, untuk kemudahan edit)
+            const customer = JSON.parse(localStorage.getItem('customerData'));
+            if(customer && customer.alamat){
+                document.getElementById('alamat_detail').value = customer.alamat.detail || '';
+                document.getElementById('kode_pos').value = customer.alamat.kodePos || '';
+                // Untuk dropdown, diperlukan logika async untuk memilih kembali opsi yang tersimpan
+            }
         });
 
         umkmListContainer.addEventListener('click', (e) => {
             const card = e.target.closest('[data-umkm-id]');
-            if (card) {
-                const umkmId = card.dataset.umkmId;
-                showUmkmDetail(umkmId);
-            }
+            if (card) showUmkmDetail(card.dataset.umkmId);
         });
 
         umkmDetailView.addEventListener('click', (e) => {
@@ -372,8 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCartView();
             }
             if (e.target.classList.contains('add-to-cart-button')) {
-                const productId = e.target.dataset.productId;
-                addToCart(productId);
+                addToCart(e.target.dataset.productId);
             }
         });
 
@@ -394,12 +482,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cartItemsContainer.addEventListener('click', (e) => {
-            const target = e.target;
-            const productId = parseInt(target.dataset.productId, 10);
-            if (target.classList.contains('increase-quantity-button')) {
+            const productId = parseInt(e.target.dataset.productId, 10);
+            if (e.target.classList.contains('increase-quantity-button')) {
                 increaseQuantity(productId);
             }
-            if (target.classList.contains('decrease-quantity-button')) {
+            if (e.target.classList.contains('decrease-quantity-button')) {
                 decreaseQuantity(productId);
             }
         });
@@ -410,9 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupMobileMenu() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     }
 
     function setupComplaintModal() {

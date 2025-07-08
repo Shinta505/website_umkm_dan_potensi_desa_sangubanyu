@@ -119,23 +119,18 @@
     </footer>
 
     <div id="customer-data-modal"
-        class="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-[100]">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 modal-enter">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Lengkapi Data Anda</h2>
-            <p class="text-center text-gray-600 mb-6">Untuk melanjutkan, mohon isi data diri Anda terlebih dahulu.
-            </p>
-            <form id="customer-form">
+        class="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-[100] p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
+            <div class="p-6 text-center border-b">
+                <h2 class="text-2xl font-bold text-gray-800">Lengkapi Data Anda</h2>
+                <p class="text-gray-600 mt-2">Untuk melanjutkan, mohon isi data diri dan alamat pengiriman Anda.</p>
+            </div>
+            <form id="customer-form" class="p-6 overflow-y-auto">
                 <div class="mb-4">
                     <label for="nama_lengkap" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
                     <input type="text" id="nama_lengkap" name="nama_lengkap"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required>
-                </div>
-                <div class="mb-4">
-                    <label for="alamat" class="block text-gray-700 font-medium mb-2">Alamat Lengkap</label>
-                    <textarea id="alamat" name="alamat" rows="3"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required></textarea>
                 </div>
                 <div class="mb-6">
                     <label for="nomor_hp" class="block text-gray-700 font-medium mb-2">Nomor HP (WhatsApp)</label>
@@ -143,10 +138,59 @@
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required placeholder="Contoh: 08123456789">
                 </div>
-                <button type="submit"
-                    class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
-                    Simpan & Lanjutkan
-                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="provinsi" class="block text-gray-700 font-medium mb-2">Provinsi</label>
+                        <select id="provinsi" name="provinsi"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                            required>
+                            <option value="">Pilih Provinsi...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="kota" class="block text-gray-700 font-medium mb-2">Kota/Kabupaten</label>
+                        <select id="kota" name="kota"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                            required disabled>
+                            <option value="">Pilih Kota/Kabupaten...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="kecamatan" class="block text-gray-700 font-medium mb-2">Kecamatan</label>
+                        <select id="kecamatan" name="kecamatan"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                            required disabled>
+                            <option value="">Pilih Kecamatan...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="kelurahan" class="block text-gray-700 font-medium mb-2">Kelurahan/Desa</label>
+                        <select id="kelurahan" name="kelurahan"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                            required disabled>
+                            <option value="">Pilih Kelurahan/Desa...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="alamat_detail" class="block text-gray-700 font-medium mb-2">Detail Alamat</label>
+                    <textarea id="alamat_detail" name="alamat_detail" rows="3"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required placeholder="Contoh: Jl. Merdeka No. 10, RT 01/RW 02"></textarea>
+                </div>
+                <div class="mb-6">
+                    <label for="kode_pos" class="block text-gray-700 font-medium mb-2">Kode Pos</label>
+                    <input type="text" id="kode_pos" name="kode_pos"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Masukkan Kode Pos">
+                </div>
+                <div class="px-6 py-4 border-t bg-gray-50">
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Simpan & Lanjutkan
+                    </button>
+                </div>
             </form>
         </div>
     </div>
