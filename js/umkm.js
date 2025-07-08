@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
         orderDetails += `Nama: ${customer.nama}\n`;
         orderDetails += `No. HP: ${customer.nomorHp}\n`;
         orderDetails += `Alamat: ${formattedAddress}\n\n`;
-        orderDetails += "Mohon konfirmasi ketersediaan dan total pembayarannya. Terima kasih.";
+        orderDetails += "Mohon konfirmasi ketersediaan pesanan dan total pembayaran setelah ditambahkan biaya pengiriman. Harap berikan juga bukti dan no. resi setelah barang dikemas. \n\nTerima kasih.";
 
         const whatsappUrl = `https://wa.me/${currentUmkmContact}?text=${encodeURIComponent(orderDetails)}`;
 
