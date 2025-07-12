@@ -39,10 +39,47 @@ if (complaintModal) {
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
 // --- Fetch and Display Aparat Desa Data ---
-async function loadAparatDesa(observer) {
-    const container = document.getElementById('aparat-desa-container');
-    const apiUrl = 'https://website-sangubayu-be.vercel.app/api/struktur-organisasi';
+const container = document.getElementById('aparat-desa-container');
+const loadMoreContainer = document.getElementById('load-more-container');
+const apiUrl = 'https://website-sangubayu-be.vercel.app/api/struktur-organisasi';
+let allData = [];
+let itemsToShow = 8;
+let itemsLoaded = 0;
+let observer;
 
+function displayItems() {
+    const fragment = document.createDocumentFragment();
+    const itemsToLoad = allData.slice(itemsLoaded, itemsLoaded + itemsToShow);
+
+    itemsToLoad.forEach(pejabat => {
+        const fotoUrl = pejabat.foto_pejabat || 'https://placehold.co/300x300/E2E8F0/4A5568?text=Foto';
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-lg shadow-md overflow-hidden text-center transform hover:-translate-y-2 transition-transform duration-300 animate-on-scroll slide-in-up-reveal";
+        card.innerHTML = `
+            <div class="h-64 bg-gray-200">
+                 <img src="${fotoUrl}" alt="Foto ${pejabat.nama_pejabat}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/300x300/E2E8F0/4A5568?text=Foto';">
+            </div>
+            <div class="p-5">
+                <h3 class="text-lg font-bold text-gray-900">${pejabat.nama_pejabat}</h3>
+                <p class="text-blue-600 font-semibold">${pejabat.nama_jabatan}</p>
+            </div>
+        `;
+        fragment.appendChild(card);
+        observer.observe(card);
+    });
+
+    container.appendChild(fragment);
+    itemsLoaded += itemsToLoad.length;
+}
+
+function loadMoreItems() {
+    displayItems();
+    if (itemsLoaded >= allData.length) {
+        loadMoreContainer.innerHTML = ''; // Remove the button
+    }
+}
+
+async function loadAparatDesa() {
     // Show a loading state
     container.innerHTML = '<p class="text-center text-gray-500 col-span-full">Memuat data aparat desa...</p>';
 
@@ -51,38 +88,25 @@ async function loadAparatDesa(observer) {
         if (!response.ok) {
             throw new Error(`Gagal mengambil data: ${response.statusText}`);
         }
-        const data = await response.json();
+        allData = await response.json();
 
         // Clear loading state
         container.innerHTML = '';
 
-        if (data.length === 0) {
+        if (allData.length === 0) {
             container.innerHTML = '<p class="text-center text-gray-500 col-span-full">Data aparat desa tidak tersedia saat ini.</p>';
             return;
         }
 
-        // Create a card for each official
-        data.forEach(pejabat => {
-            const fotoUrl = pejabat.foto_pejabat || 'https://placehold.co/300x300/E2E8F0/4A5568?text=Foto';
-            const card = `
-                <div class="bg-white rounded-lg shadow-md overflow-hidden text-center transform hover:-translate-y-2 transition-transform duration-300 animate-on-scroll slide-in-up-reveal">
-                    <div class="h-64 bg-gray-200">
-                         <img src="${fotoUrl}" alt="Foto ${pejabat.nama_pejabat}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/300x300/E2E8F0/4A5568?text=Foto';">
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-gray-900">${pejabat.nama_pejabat}</h3>
-                        <p class="text-blue-600 font-semibold">${pejabat.nama_jabatan}</p>
-                    </div>
-                </div>
-            `;
-            container.innerHTML += card;
-        });
+        displayItems();
 
-        // Re-observe the newly added elements for animation
-        const newElementsToAnimate = container.querySelectorAll('.animate-on-scroll');
-        newElementsToAnimate.forEach(element => {
-            observer.observe(element);
-        });
+        if (allData.length > itemsToShow) {
+            const loadMoreButton = document.createElement('button');
+            loadMoreButton.innerText = 'Lihat Lebih Banyak';
+            loadMoreButton.className = 'bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300';
+            loadMoreButton.addEventListener('click', loadMoreItems);
+            loadMoreContainer.appendChild(loadMoreButton);
+        }
 
     } catch (error) {
         console.error('Error loading aparat desa data:', error);
@@ -142,7 +166,7 @@ if (complaintForm) {
 // Load data when the page is ready
 document.addEventListener('DOMContentLoaded', () => {
     // --- Animation on Scroll Logic ---
-    const observer = new IntersectionObserver((entries) => {
+    observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
@@ -159,5 +183,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Load dynamic data and pass the observer
-    loadAparatDesa(observer);
+    loadAparatDesa();
 });
