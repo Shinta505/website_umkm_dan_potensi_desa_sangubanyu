@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="mb-4">${umkm.deskripsi_umkm}</p>
                         <div class="space-y-2">
                             <p><i class="fas fa-map-marker-alt mr-2 text-gray-500"></i>${umkm.alamat_umkm}</p>
-                            <a href="https://wa.me/${umkm.kontak_umkm}" target="_blank" class="text-green-500 hover:underline flex items-center">
+                            <a href="https://wa.me/${umkm.kontak_umkm}?text=Halo%2C%20saya%20menemukan%20informasi%20tentang%20UMKM%20Anda%20di%20website%20Desa%20Sangubanyu.%20Saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20mengenai%20produk%20Anda." target="_blank" class="text-green-500 hover:underline flex items-center">
                                 <i class="fab fa-whatsapp mr-2"></i>
                                 <span>${umkm.kontak_umkm}</span>
                             </a>
