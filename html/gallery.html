@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R3N4XFQ1GW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-R3N4XFQ1GW');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../asset/logo-web.png" type="image/x-icon">
+
+    <title>Galeri - Website Desa Sangubanyu</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <img src="../asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-10 w-10">
+                    <span class="font-bold text-lg text-gray-800">Desa Sangubanyu</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
+                    <a href="profil-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Profil Desa</a>
+                    <a href="struktur-organisasi.html" class="text-gray-600 hover:text-blue-600 font-medium">Struktur
+                        Organisasi</a>
+                    <a href="gor-kwt.html" class="text-gray-600 hover:text-blue-600 font-medium">GOR & KWT</a>
+                    <a href="umkm.html" class="text-gray-600 hover:text-blue-600 font-medium">UMKM</a>
+                    <a href="peta-desa.html" class="text-gray-600 hover:text-blue-600 font-medium">Peta Desa</a>
+                    <a href="gallery.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Galeri</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden py-2">
+                <a href="../index.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Home</a>
+                <a href="profil-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Profil
+                    Desa</a>
+                <a href="struktur-organisasi.html"
+                    class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Struktur Organisasi</a>
+                <a href="gor-kwt.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">GOR & KWT</a>
+                <a href="umkm.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">UMKM</a>
+                <a href="peta-desa.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Peta Desa</a>
+                <a href="gallery.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">Galeri</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-4 animate-on-scroll fade-in-down-dramatic">Galeri
+                Desa Sangubanyu</h1>
+            <p class="text-lg text-center text-gray-600 mb-12 animate-on-scroll fade-in-up-dramatic"
+                style="transition-delay: 0.2s;">Momen dan kegiatan yang terdokumentasi di desa kami.</p>
+
+            <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <img src="../asset/logo kebumen.png" alt="Logo Kabupaten Kebumen" class="h-12 w-12 mr-3">
+                        <div>
+                            <h3 class="font-bold text-xl">Pemerintah Desa Sangubanyu</h3>
+                            <p class="text-sm text-gray-400">Kabupaten Kebumen</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">
+                        Dukuh Gandu Karang Rt 04 Rw 02, Sangubanyu, Kec. Buluspesantren, Kabupaten Kebumen, Jawa Tengah
+                        54391
+                    </p>
+                </div>
+                <div class="hidden md:block"></div>
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Hubungi Kami</h3>
+                    <ul class="space-y-3">
+                        <li><a href="mailto:Pemdessangubanyu21@gmail.com"
+                                class="flex items-center text-gray-400 hover:text-white transition"><i
+                                    class="fas fa-envelope fa-fw mr-3"></i><span>Pemdessangubanyu21@gmail.com</span></a>
+                        </li>
+                        <li><a href="https://instagram.com/pemdes_sangubanyu" target="_blank" rel="noopener noreferrer"
+                                class="flex items-center text-gray-400 hover:text-white transition"><i
+                                    class="fab fa-instagram fa-fw mr-3"></i><span>@pemdes_sangubanyu</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+                <p>© <span id="current-year"></span> Pemerintah Desa Sangubanyu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/gallery.js"></script>
+</body>
+
+</html>
