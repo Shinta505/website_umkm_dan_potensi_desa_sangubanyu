@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Gagal memuat data galeri.');
             }
             const images = await response.json();
+
+            // --- PERUBAHAN DI SINI ---
+            // Mengurutkan gambar berdasarkan tanggal upload, dari yang terbaru ke yang terlama
+            images.sort((a, b) => new Date(b.tanggal_upload) - new Date(a.tanggal_upload));
+            // -------------------------
+
             galleryContainer.innerHTML = '';
 
             if (images.length === 0) {
